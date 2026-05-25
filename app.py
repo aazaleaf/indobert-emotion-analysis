@@ -37,6 +37,19 @@ if st.button("Prediksi"):
         predicted_class = torch.argmax(predictions).item()
         
         # Tampilkan hasil (Note: ubah angka ke nama label sesuai dataset PRDECT-ID)
-        st.success(f"Hasil Klasifikasi: Kelas {predicted_class}")
+        # Kamus penerjemah angka ke nama emosi (biasanya urut abjad dari LabelEncoder)
+        label_mapping = {
+            0: "Anger 😡",
+            1: "Fear 😨",
+            2: "Happy 😀",
+            3: "Love 😍",
+            4: "Sadness 😢"
+        }
+        
+        # Menerjemahkan angka prediksi ke teks emosi
+        predicted_emotion = label_mapping.get(predicted_class, "Tidak diketahui")
+        
+        # Tampilkan hasil
+        st.success(f"Hasil Klasifikasi: {predicted_emotion}")
     else:
         st.warning("Teks tidak boleh kosong!")
