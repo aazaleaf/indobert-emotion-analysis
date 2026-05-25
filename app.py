@@ -5,13 +5,17 @@ from transformers import AutoTokenizer, AutoModelForSequenceClassification
 # Menggunakan cache agar model tidak di-load berulang kali setiap ada interaksi
 @st.cache_resource
 def load_model():
-    # Masukkan repo_id yang sama dengan yang kamu buat di Colab
-    model_path = "aazaleaf/indobert-emosi-prdect" 
+    # Nama repo SUDAH DIPERBAIKI sesuai dengan yang ada di Hugging Face kamu
+    model_path = "aazaleaf/indobert-emosi-prdect"
     
     # Streamlit akan otomatis mendownload model dari Hugging Face
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = AutoModelForSequenceClassification.from_pretrained(model_path)
     return tokenizer, model
+
+# ---> INI BARIS YANG KURANG SEBELUMNYA <---
+# Memanggil fungsi agar tokenizer dan model benar-benar dibuat
+tokenizer, model = load_model()
 
 # Bagian UI Streamlit
 st.title("Klasifikasi Emosi Review Produk 📝")
